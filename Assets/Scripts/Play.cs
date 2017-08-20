@@ -25,6 +25,5 @@ public class Play : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Intro");
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 }
