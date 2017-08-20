@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Typing : MonoBehaviour {
 
     public Text textBox;
     static int health;
+    public int counter;
 
     public void Awake()
     {
@@ -32,11 +34,19 @@ public class Typing : MonoBehaviour {
     {
         StopAllCoroutines();
         currentlyDisplayingText++;
-        if (currentlyDisplayingText > goatText.Length)
+        counter += 1;
+        if (counter == 4)
         {
-            currentlyDisplayingText = 0;
+            SceneManager.LoadScene("Ship");
         }
-        StartCoroutine(AnimateText());
+        else
+        {
+            if (currentlyDisplayingText > goatText.Length)
+            {
+                currentlyDisplayingText = 0;
+            }
+            StartCoroutine(AnimateText());
+        }
     }
 
     IEnumerator AnimateText()
