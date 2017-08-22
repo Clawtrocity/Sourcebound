@@ -11,20 +11,26 @@ public class Typing : MonoBehaviour {
     public Text textBox;
     static int health;
     public int counter;
+    public Animator FadeOut;
+    public Animator FadeIn;
 
     public void Awake()
     {
         StartCoroutine(AnimateText());
+        Time.timeScale = 1;
+        FadeOut.enabled = false;
+        FadeIn.enabled = true;
     }
 
     public void Start()
     {
+        FadeIn.Play("FadeIn");
         health = 80;
     }
 
     string[] goatText = new string[] {
         "Initializing protocol: WAKE",
-        "Good Morning Chance \n I'm currently running your vitals",
+        "Hello, please remain relaxed \n I'm currently running your vitals",
         "82.3% Current Health Quality \n Recommendation: \n Hydration Chamber",
         "Time til landing: 01:02:21"
     };
@@ -37,7 +43,9 @@ public class Typing : MonoBehaviour {
         counter += 1;
         if (counter == 4)
         {
-            SceneManager.LoadScene("Ship");
+            FadeOut.enabled = true;
+            FadeOut.Play("FadeOut");
+            StartCoroutine(Timer());
         }
         else
         {
@@ -47,6 +55,11 @@ public class Typing : MonoBehaviour {
             }
             StartCoroutine(AnimateText());
         }
+    }
+    IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Ship");
     }
 
     IEnumerator AnimateText()
