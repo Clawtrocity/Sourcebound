@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class Typing : MonoBehaviour {
 
     public Text textBox;
-    static int health;
     public int counter;
     public Animator FadeOut;
     public Animator FadeIn;
@@ -25,14 +24,13 @@ public class Typing : MonoBehaviour {
     public void Start()
     {
         FadeIn.Play("FadeIn");
-        health = 80;
     }
 
     string[] goatText = new string[] {
+        "Timer == 0",
         "Initializing protocol: WAKE",
-        "Hello, please remain relaxed \n I'm currently running your vitals",
-        "82.3% Current Health Quality \n Recommendation: \n Hydration Chamber",
-        "Time til landing: 01:02:21"
+        "Current status: 82.3% Health /n Recommendation: Hydration Chamber",
+        "Time til landing: 01:13:58"
     };
     int currentlyDisplayingText = 0;
 
